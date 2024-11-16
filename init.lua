@@ -27,6 +27,8 @@ require('lazy').setup({
   require 'plugins.nvim-neotest',
   require 'plugins.transparent',
   require 'plugins.vim-fugitive',
+  require 'plugins.lua-line',
+  require 'plugins.maximize',
 }, {
   ui = {
     icons = vim.g.have_nerd_font and {} or {

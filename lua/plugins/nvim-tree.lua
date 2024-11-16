@@ -25,11 +25,11 @@ return {
             default = '', -- default file icon (e.g., plain text file)
             symlink = '',
             git = {
-              unstaged = '✗',
+              unstaged = '★',
               staged = '✓',
               unmerged = '',
               renamed = '➜',
-              untracked = '★',
+              untracked = '✗',
               deleted = '',
               ignored = '◌',
             },

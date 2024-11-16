@@ -136,11 +136,29 @@ return {
     --  - capabilities (table): Override fields in capabilities. Can be used to disable certain LSP features.
     --  - settings (table): Override the default settings passed when initializing the server.
     --        For example, to see the options for `lua_ls`, you could go to: https://luals.github.io/wiki/settings/
+
+    local util = require 'lspconfig.util'
+
     local servers = {
       clangd = {},
       --csharp_ls = {},
       omnisharp = require 'plugins.omnisharp-config',
-
+      angularls = {
+        capabilities = capabilities,
+        root_dir = util.root_pattern('angular.json', 'project.json', 'nx.json'),
+      },
+      ts_ls = {
+        capabilities = capabilities,
+      },
+      html = {
+        capabilities = capabilities,
+      },
+      emmet_ls = {
+        capabilities = capabilities,
+      },
+      cssls = {
+        capabilities = capabilities,
+      },
       lua_ls = {
         -- cmd = {...},
         -- filetypes = { ...},
@@ -164,54 +182,6 @@ return {
     --
     --  You can press `g?` for help in this menu.
     require('mason').setup()
-    --require('csharp').setup {
-    -- lsp = {
-    --   -- Sets if you want to use omnisharp as your LSP
-    --   omnisharp = {
-    --     -- When set to false, csharp.nvim won't launch omnisharp automatically.
-    --     enable = true,
-    --     -- When set, csharp.nvim won't install omnisharp automatically. Instead, the omnisharp instance in the cmd_path will be used.
-    --     cmd_path = nil,
-    --     -- The default timeout when communicating with omnisharp
-    --     default_timeout = 1000,
-    --     -- Settings that'll be passed to the omnisharp server
-    --     enable_editor_config_support = true,
-    --     organize_imports = true,
-    --     load_projects_on_demand = false,
-    --     enable_analyzers_support = false,
-    --     enable_import_completion = true,
-    --     include_prerelease_sdks = true,
-    --     analyze_open_documents_only = false,
-    --     enable_package_auto_restore = true,
-    --     -- Launches omnisharp in debug mode
-    --     debug = false,
-    --   },
-    --   -- Sets if you want to use roslyn as your LSP
-    --   roslyn = {
-    --     -- When set to true, csharp.nvim will launch roslyn automatically.
-    --     enable = false,
-    --     -- Path to the roslyn LSP see 'Roslyn LSP Specific Prerequisites' above.
-    --     cmd_path = nil,
-    --   },
-    --   -- The capabilities to pass to the omnisharp server
-    --   capabilities = nil,
-    --   -- on_attach function that'll be called when the LSP is attached to a buffer
-    --   on_attach = nil,
-    -- },
-    -- logging = {
-    --   -- The minimum log level.
-    --   level = 'INFO',
-    -- },
-    -- dap = {
-    --   -- When set, csharp.nvim won't launch install and debugger automatically. Instead, it'll use the debug adapter specified.
-    --   --- @type string?
-    --   adapter_name = nil,
-    -- },
-    -- }
-    --local csharp = require 'csharp'
-    --vim.keymap.set('n', '<leader>kd', csharp.debug_project)
-    --vim.keymap.set('n', '<leader>kf', csharp.fix_usings)
-    --vim.keymap.set('n', '<leader>kr', csharp.run_project)
 
     -- You can add other tools here that you want Mason to install
     -- for you, so that they are available from within Neovim.
@@ -219,6 +189,8 @@ return {
     vim.list_extend(ensure_installed, {
       'stylua',
       'csharpier',
+      'eslint_d',
+      'prettierd',
     })
     require('mason-tool-installer').setup { ensure_installed = ensure_installed }
 
