@@ -31,6 +31,21 @@ vim.keymap.set('n', 'j', "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = tr
 
 -- Fixes pasting after visual selection.
 vim.keymap.set('v', 'p', '"_dP')
+vim.keymap.set('n', 'd', '"_d')
+vim.keymap.set('v', 'd', '"_d')
+vim.keymap.set('n', 'x', '"_x')
+vim.keymap.set('n', 'dd', '"_dd')
+vim.keymap.set('n', 'D', '"_D')
+
+vim.keymap.set('n', 'X', 'd')
+vim.keymap.set('n', 'XX', 'dd')
+vim.keymap.set('v', 'X', 'd')
+
+--vim.keymap.set('n', 'y', '"+y')
+--vim.keymap.set('n', 'yy', '"+yy')
+--vim.keymap.set('n', 'p', '"+p')
+--vim.keymap.set('v', 'y', '"+y')
+--vim.keymap.set('v', 'p', '"+p')
 
 -- Indenting in visual mode (tab/shift+tab)
 vim.keymap.set('v', '<Tab>', '>gv')
@@ -50,7 +65,7 @@ noremap('n', 'nzzzv')
 noremap('N', 'Nzzzv')
 noremap('<leader>p', '"_dP', 'v')
 noremap('<C-c>', '<Esc>')
-noremap('<C-w>a', ':bprevious<CR>')
-noremap('<C-w>y', ':bnext<CR>')
+noremap('<C-w>p', ':bprevious<CR>')
+noremap('<C-w>n', ':bnext<CR>')
 noremap('<C-w>p', ':tabclose<CR>')
 noremap('<C-w>z', ':tabo<CR>')
